@@ -35,11 +35,7 @@ Copy `.env.example` to `.env` and adjust values.
    ```bash
    npx wrangler d1 create nova-db
    ```
-2. Create KV namespace:
-   ```bash
-   npx wrangler kv namespace create PRESENCE_KV
-   ```
-3. Create R2 bucket:
+2. Create R2 bucket:
    ```bash
    npx wrangler r2 bucket create nova-media
    ```
@@ -67,7 +63,6 @@ Configured in `wrangler.jsonc`:
 
 - `DB` (D1 database)
 - `NOVA_CHANNELS` (Durable Object for channel real-time fanout)
-- `PRESENCE_KV` (presence cache)
 - `MEDIA_BUCKET` (R2 media storage)
 
 ## Environment Variables / Secrets

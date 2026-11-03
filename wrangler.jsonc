@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "nova-platform",
+  "name": "chat",
   "main": "workers/index.ts",
   "compatibility_date": "2026-11-03",
   "assets": {
@@ -32,12 +32,6 @@
     {
       "binding": "MEDIA_BUCKET",
       "bucket_name": "nova-media"
-    }
-  ],
-  "kv_namespaces": [
-    {
-      "binding": "PRESENCE_KV",
-      "id": "replace-with-kv-id"
     }
   ],
   "vars": {

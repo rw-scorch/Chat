@@ -82,17 +82,19 @@ function App() {
   }
 
   return (
-    <main className="flex min-h-screen bg-gradient-to-br from-[#080a11] via-[#0d1220] to-[#111024]">
-      <aside className="w-16 border-r border-white/10 bg-black/20 p-2">
-        <div className="mb-3 grid place-items-center rounded-xl bg-nova-accent/40 p-3"><Home size={18} /></div>
-        <div className="space-y-2">
+    <main className="flex min-h-screen flex-col bg-gradient-to-br from-[#080a11] via-[#0d1220] to-[#111024] md:flex-row">
+      <aside className="border-b border-white/10 bg-black/20 p-2 md:w-16 md:border-b-0 md:border-r">
+        <div className="flex items-center gap-2 md:block">
+          <div className="grid place-items-center rounded-xl bg-nova-accent/40 p-3"><Home size={18} /></div>
+          <div className="flex flex-1 justify-around gap-1 md:mt-3 md:block md:space-y-2">
           {[Users, MessageSquare, Bell, Gamepad2, User2].map((Icon, i) => (
-            <button key={i} className="w-full rounded-lg bg-white/5 p-2 hover:bg-white/10" onClick={() => setView(i === 3 ? 'game' : 'chat')}><Icon size={16} /></button>
+            <button key={i} aria-label={i === 3 ? 'Games' : 'Chat navigation'} className="rounded-lg bg-white/5 p-2 hover:bg-white/10 md:block md:w-full" onClick={() => setView(i === 3 ? 'game' : 'chat')}><Icon size={16} /></button>
           ))}
+          </div>
         </div>
       </aside>
 
-      <aside className="w-56 border-r border-white/10 bg-black/20 p-3">
+      <aside className="border-b border-white/10 bg-black/20 p-3 md:w-56 md:border-b-0 md:border-r">
         <div className="mb-2 flex items-center justify-between"><h2 className="font-semibold">Servers</h2><button onClick={async () => {
           const name = `Server ${servers.length + 1}`;
           const server = await api.createServer(name);
@@ -106,7 +108,7 @@ function App() {
         </div>
       </aside>
 
-      <section className="flex-1 p-4">
+      <section className="min-w-0 flex-1 p-3 md:p-4">
         {view === 'chat' ? (
           <>
             <div className="mb-2 flex items-center justify-between">
@@ -123,13 +125,13 @@ function App() {
                 <button key={channel.id} className={`rounded px-2 py-1 text-sm ${selectedChannel === channel.id ? 'bg-nova-purple' : 'bg-white/10'}`} onClick={() => setSelectedChannel(channel.id)}>#{channel.name}</button>
               ))}
             </div>
-            <div className="mb-3 h-[55vh] overflow-y-auto rounded-xl border border-white/10 bg-black/30 p-3">
+            <div className="mb-3 h-[55vh] min-h-56 overflow-y-auto rounded-xl border border-white/10 bg-black/30 p-3">
               {messages.map((message) => (
                 <p key={message.id} className="mb-2 text-sm"><span className="text-cyan-300">{message.authorUsername}</span>: {message.content}</p>
               ))}
             </div>
             <div className="flex gap-2">
-              <textarea className="h-12 flex-1 resize-none rounded bg-black/30 p-2" value={composer} onChange={(e) => setComposer(e.target.value)} onKeyDown={(e) => {
+              <textarea aria-label="Message" className="h-12 min-w-0 flex-1 resize-none rounded bg-black/30 p-2" value={composer} onChange={(e) => setComposer(e.target.value)} onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                   e.preventDefault();
                   void sendMessage();
@@ -162,7 +164,7 @@ function App() {
         )}
       </section>
 
-      <aside className="w-56 border-l border-white/10 bg-black/20 p-3">
+      <aside className="hidden w-56 border-l border-white/10 bg-black/20 p-3 lg:block">
         <h2 className="mb-3 text-sm font-semibold">Member Activity</h2>
         <div className="rounded bg-white/5 p-2 text-sm">
           <p>{user.username}</p>
