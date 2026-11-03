@@ -1,7 +1,6 @@
 export interface Env {
   DB: D1Database;
   NOVA_CHANNELS: DurableObjectNamespace;
-  PRESENCE_KV: KVNamespace;
   MEDIA_BUCKET: R2Bucket;
   ALLOWED_ORIGIN?: string;
   TURN_URL?: string;
