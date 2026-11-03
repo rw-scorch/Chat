@@ -1,0 +1,49 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nova-platform",
+  "main": "workers/index.ts",
+  "compatibility_date": "2026-11-03",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "NOVA_CHANNELS",
+        "class_name": "ChannelRoom"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["ChannelRoom"]
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "nova-db",
+      "database_id": "replace-with-d1-id"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "MEDIA_BUCKET",
+      "bucket_name": "nova-media"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "PRESENCE_KV",
+      "id": "replace-with-kv-id"
+    }
+  ],
+  "vars": {
+    "ALLOWED_ORIGIN": "http://localhost:5173",
+    "TURN_URL": "",
+    "TURN_USERNAME": "",
+    "TURN_CREDENTIAL": ""
+  }
+}
