@@ -4,10 +4,12 @@
   "name": "chat",
   "main": "workers/index.ts",
   "compatibility_date": "2026-11-03",
+
   "assets": {
     "directory": "./dist",
     "not_found_handling": "single-page-application"
   },
+
   "durable_objects": {
     "bindings": [
       {
@@ -16,12 +18,14 @@
       }
     ]
   },
+
   "migrations": [
     {
       "tag": "v1",
       "new_sqlite_classes": ["ChannelRoom"]
     }
   ],
+
   "d1_databases": [
     {
       "binding": "DB",
@@ -29,14 +33,16 @@
       "database_id": "98b364da-e04d-43f7-a332-6ec29b43c4d5"
     }
   ],
+
   "r2_buckets": [
     {
       "binding": "MEDIA_BUCKET",
       "bucket_name": "nova-media"
     }
   ],
+
   "vars": {
-    "ALLOWED_ORIGIN": "http://localhost:5173",
+    "ALLOWED_ORIGIN": "https://chat.rwscorch.workers.dev",
     "TURN_URL": "",
     "TURN_USERNAME": "",
     "TURN_CREDENTIAL": ""
